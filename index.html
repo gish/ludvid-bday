@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grattis på födelsedagen Ludvig!</title>
+  <style>
+    body {
+      background: #111;
+      color: #009933;
+      font-family: courier;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  </head>
+  <body>
+    <p class="message">Grattis på födelsedagen Ludvig Hedberg!</p>
+    <p class="message">Hoppas du har fått många bra och roliga presenter.</p>
+    <p class="message">Din farbror vill ta med dig att äta på Natsu sushi...</p>
+    <p class="message">...och se nya Lejonkungen-filmen.</p>
+    <p class="message">Hurra, hurra, hurra, hurra!</p>
+    <p class="message">Önskar Malte, Åsa och Erik.</p>
+    <script type="text/javascript">
+      const messageContainers = document.getElementsByClassName('message');
+      const messages = [...messageContainers].map(m => m.textContent);
+
+      const TIME_BETWEEN_MESSAGES = 6000;
+      const TIME_BETWEEN_CHARACTERS = 100;
+
+      const emptyMessages = (elements) => [...elements].map(e => e.textContent = '');
+      const printMessages = (messages) => messages.map((m, i) => setTimeout(() => printMessage(m), i*TIME_BETWEEN_MESSAGES));
+      const printMessage = (message) => {
+      const p = document.createElement('p');
+      const printNChars = (element, message, n) => element.textContent = message.substr(0, n);
+        document.body.appendChild(p);
+        const timer = setInterval(() => {
+          if (p.textContent.length === message.length) {
+            clearInterval(timer);
+          } else {
+            printNChars(p, message, p.textContent.length + 1);
+          }
+        }, TIME_BETWEEN_CHARACTERS);
+      };
+
+      emptyMessages(messageContainers);
+      printMessages(messages);
+    </script>
+  </body>
+</html>
